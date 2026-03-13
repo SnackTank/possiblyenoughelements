@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "possiblyenoughelements:natrium"
+    },
+    {
+      "item": "possiblyenoughelements:natrium"
+    },
+    {
+      "item": "possiblyenoughelements:natrium"
+    },
+    {
+      "item": "possiblyenoughelements:natrium"
+    },
+    {
+      "item": "possiblyenoughelements:natrium"
+    },
+    {
+      "item": "possiblyenoughelements:natrium"
+    },
+    {
+      "item": "possiblyenoughelements:natrium"
+    },
+    {
+      "item": "possiblyenoughelements:natrium"
+    },
+    {
+      "item": "possiblyenoughelements:natrium"
+    }
+  ],
+  "result": {
+    "item": "possiblyenoughelements:cubus_natrii"
+  }
+}
