@@ -16,4 +16,4 @@ item.possiblyenoughelements.natrium.yummy=It tastes a little tingly.
 
 # Commands
 command.possiblyenoughelements.getgas.usage=/getgas <TST>
-command.possiblyenoughelements.setgas.usage=/setgas
+command.possiblyenoughelements.setgas.usage=/setgas <x> <y> <z> <name>

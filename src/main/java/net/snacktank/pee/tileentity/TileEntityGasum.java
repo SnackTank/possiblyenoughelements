@@ -9,10 +9,11 @@ import net.snacktank.pee.block.BlockGasum;
 public class TileEntityGasum extends TileEntity implements ITickable{
 
 	public String name = "hydrogenium";
+	public boolean canExplode = true;
+	public boolean canFloat = true;
 	int j;
 	
 	public TileEntityGasum() {
-		//name = "hydrogenium";
 		j = 0;
 	}
 		
@@ -20,6 +21,8 @@ public class TileEntityGasum extends TileEntity implements ITickable{
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
 		compound.setString("name", name);
+		compound.setBoolean("can_explode", canExplode);
+		compound.setBoolean("can_float", canFloat);
         return compound;
     }
 	
@@ -27,6 +30,8 @@ public class TileEntityGasum extends TileEntity implements ITickable{
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
 		name = compound.getString("name");
+		canExplode = compound.getBoolean("can_explode");
+		canFloat = compound.getBoolean("can_float");
 	}
 	
 	@Override

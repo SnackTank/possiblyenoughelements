@@ -13,7 +13,15 @@ import net.snacktank.pee.tileentity.TileEntityGasum;
 public class CommandSetGasum extends CommandBase{
 
 	@Override
+	//setgas <x> <y> <z> <name> <can_float> <can_explode>
 	public void execute(MinecraftServer server, ICommandSender sender, String[] params) throws CommandException {
+		
+		//Check if the command is 'valid'
+		if(params.length != 6) {
+			sender.sendMessage(new TextComponentString("Usage: /setgas <x> <y> <z> <name> <can_float> <can_explode>"));
+			return;
+		}
+
 		double x, y, z;
 		x = Double.parseDouble(params[0]);
 		y = Double.parseDouble(params[1]);
@@ -23,6 +31,8 @@ public class CommandSetGasum extends CommandBase{
 			
 			if(te instanceof TileEntityGasum) {
 				((TileEntityGasum) te).name = params[3];
+				((TileEntityGasum) te).canFloat = getBool(params[4]);
+				((TileEntityGasum) te).canExplode = getBool(params[5]);
 				((TileEntityGasum) te).markDirty();
 				
 				NBTTagCompound nbt = te.writeToNBT(new NBTTagCompound());
@@ -32,6 +42,16 @@ public class CommandSetGasum extends CommandBase{
 			}
 	}
 
+	public boolean getBool(String string) {
+		switch(string) {
+		case "true":
+			return true;
+		case "false":
+			return false;
+		}
+		return false;
+	}
+	
 	@Override
 	public String getName() {
 		return "setgas";

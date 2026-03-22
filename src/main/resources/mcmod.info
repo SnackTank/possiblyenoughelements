@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
+  "modid": "possiblyenoughelements",
+  "name": "Possibly Enough Elements",
+  "description": "Possibly every element in Minecraft.",
+  "version": "0.2.0",
+  "mcversion": "1.12.2",
+  "url": "github.com/snacktank/possiblyenoughelements/",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["SnackTank"],
+  "credits": "",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

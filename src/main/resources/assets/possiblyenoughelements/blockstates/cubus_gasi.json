@@ -4,6 +4,14 @@
         "model": "possiblyenoughelements:cubus_gasi"
     },
     "variants": {
+    	"can_explode": {
+    		"true": { model: "possiblyenoughelements:cubus_gasi" },
+    		"false": { model: "possiblyenoughelements:cubus_gasi" }
+    	},
+    	"can_float" : {
+    		"true": { model: "possiblyenoughelements:cubus_gasi" },
+    		"false": { model: "possiblyenoughelements:cubus_gasi" }
+    	},
         "normal": [{}],
         "inventory": [{}]
     }
