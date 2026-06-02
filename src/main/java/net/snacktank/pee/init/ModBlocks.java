@@ -10,4 +10,5 @@ public class ModBlocks {
 	public static final Block CUBUS_NATRII = null;
 	public static final Block CUBUS_HYDROGENII = null;
 	public static final Block CUBUS_GASI = null;
+	public static final Block CUBUS_ELEMENTORUM = null;
 }

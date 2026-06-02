@@ -21,6 +21,7 @@ public class ModelRegistrationHandler {
 		registerModel(Item.getItemFromBlock(ModBlocks.CUBUS_NATRII), 0);
 		registerModel(Item.getItemFromBlock(ModBlocks.CUBUS_HYDROGENII), 0);
 		registerModel(Item.getItemFromBlock(ModBlocks.CUBUS_GASI), 0);
+		registerModel(Item.getItemFromBlock(ModBlocks.CUBUS_ELEMENTORUM), 0);
 	}
 
 	private static void registerModel(Item item, int meta) {

@@ -21,6 +21,7 @@ public class CommandSetGasum extends CommandBase{
 			sender.sendMessage(new TextComponentString("Usage: /setgas <x> <y> <z> <name> <can_float> <can_explode>"));
 			return;
 		}
+		
 
 		double x, y, z;
 		x = Double.parseDouble(params[0]);

@@ -1,0 +1,10 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "possiblyenoughelements:cubus_elementorum"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

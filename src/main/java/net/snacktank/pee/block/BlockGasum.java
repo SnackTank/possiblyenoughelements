@@ -8,12 +8,17 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.Explosion;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.snacktank.pee.PossiblyEnoughElements;
 import net.snacktank.pee.init.ModItems;
 import net.snacktank.pee.tileentity.TileEntityGasum;
@@ -29,7 +34,7 @@ public class BlockGasum extends Block{
 		setLightOpacity(0);
 		setHardness(1);
 	}
-	
+		
 	//Return block NBT for debugging purposes. 
 	@Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
@@ -127,5 +132,33 @@ public class BlockGasum extends Block{
 		}
 		return true;
 	}
+	
+	//Boilerplate for see-through and no collision. 
+	@Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+        return NULL_AABB;
+    }
+	
+	@Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+	
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+	
+	@Override
+    @SideOnly(Side.CLIENT)
+    public boolean isTranslucent(IBlockState state) {
+        return true;
+    }
+	
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.TRANSLUCENT;
+    }
 	
 }

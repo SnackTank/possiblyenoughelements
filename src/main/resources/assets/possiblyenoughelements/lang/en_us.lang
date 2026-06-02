@@ -7,6 +7,7 @@ tile.possiblyenoughelements.first_block.name=Block of Amogus
 tile.possiblyenoughelements.cubus_natrii.name=Block of Sodium
 tile.possiblyenoughelements.cubus_hydrogenii.name=Block of Hydrogen
 tile.possiblyenoughelements.cubus_gasi.name=Block of Gas
+tile.possiblyenoughelements.cubus_elementorum.name=Block of Elements
 
 # TABSSSSSS
 itemGroup.possiblyenoughelements=Possibly Enough Elements!

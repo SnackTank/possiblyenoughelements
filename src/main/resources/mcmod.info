@@ -2,10 +2,10 @@
 {
   "modid": "possiblyenoughelements",
   "name": "Possibly Enough Elements",
-  "description": "Possibly every element in Minecraft.",
-  "version": "0.2.0",
+  "description": "Possibly every element added to Minecraft.",
+  "version": "0.3.0",
   "mcversion": "1.12.2",
-  "url": "github.com/snacktank/possiblyenoughelements/",
+  "url": "https://github.com/snacktank/possiblyenoughelements/",
   "updateUrl": "",
   "authorList": ["SnackTank"],
   "credits": "",

@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.snacktank.pee.command.CommandGasum;
+import net.snacktank.pee.command.CommandSetElementa;
 import net.snacktank.pee.command.CommandSetGasum;
 import net.snacktank.pee.recipes.ModRecipes;
 
@@ -19,7 +20,7 @@ public class PossiblyEnoughElements {
 
 	public static final String MODID = "possiblyenoughelements";
 	public static final String NAME = "Possibly Enough Elements";
-	public static final String VERSION = "0.2.0";
+	public static final String VERSION = "0.3.0";
 	public static final String MC_VERSION = "[1.12.2]";
 	
 	public static final Logger LOGGER = LogManager.getLogger(PossiblyEnoughElements.MODID);
@@ -41,6 +42,7 @@ public class PossiblyEnoughElements {
     public void init(FMLServerStartingEvent event) {
       event.registerServerCommand(new CommandGasum());
       event.registerServerCommand(new CommandSetGasum());
+      event.registerServerCommand(new CommandSetElementa());
     }
 	
 	@EventHandler
