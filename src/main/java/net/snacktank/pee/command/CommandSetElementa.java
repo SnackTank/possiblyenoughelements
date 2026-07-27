@@ -1,6 +1,5 @@
 package net.snacktank.pee.command;
 
-import java.util.LinkedList;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -15,13 +14,14 @@ public class CommandSetElementa extends CommandBase{
 
 	/*setelement <id>
 	 * id 0: read NBT			| /setelement 0
-	 * id 1: set allergies		| /setelement 1 <name> <allergy-length> <allergies>
-	 * 
+	 * id 1: set allergies		| /setelement 1 <name> <allergy-length> <allergies> <display-name-length> <display-name>
+	 *                  0 1    2 3 4 5 6     7  8
+	 * exp: /setelement 1 test 2 1 2 3 Block of Test
+	 *      /setelement 1 natrium 2 8 9 3 Block of Sodium
 	*/
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] params) throws CommandException {
 		EntityPlayer player = sender.getCommandSenderEntity().getEntityWorld().getPlayerEntityByUUID(sender.getCommandSenderEntity().getUniqueID());
-		Item item = player.getHeldItemMainhand().getItem();
 		int id = Integer.parseInt(params[0]);
 		if(id == 0) {
 			String message = getNBT(player);
@@ -33,24 +33,26 @@ public class CommandSetElementa extends CommandBase{
 		//We're assuming the ID is 1 or above
 		String name = params[1];
 		int allergyLength = Integer.parseInt(params[2]);
-		LinkedList<Integer> allergies = new LinkedList<Integer>();
+		int displayNameLength = Integer.parseInt(params[3+allergyLength]);
+		String[] displayName = new String[displayNameLength];
+		int[] allergies = new int[allergyLength];
 		for(int i = 0; i < allergyLength; i++) {
-			allergies.add(Integer.parseInt(params[i+3]));
+			allergies[i] = Integer.parseInt(params[i+3]);
 		}
-		int[] allergyArray = new int[allergies.size()];
-		for(int i = 0; i < allergies.size(); i++) {
-			allergyArray[i] = allergies.get(i);
+		for(int i = 0; i < displayNameLength; i++) {
+			displayName[i] = params[i+(4+allergyLength)];
 		}
+		String nameDisplay = arrayToSingleString(displayName);
 		
 		//We're just going to override the NBT data, even if it already exists!
 		NBTTagCompound blockEntityNBT = new NBTTagCompound();
 		NBTTagCompound displayNBT = new NBTTagCompound();
 		NBTTagCompound finalCompound = new NBTTagCompound();
 		
-		blockEntityNBT.setIntArray("allergies", allergyArray);
+		blockEntityNBT.setIntArray("allergies", allergies);
 		blockEntityNBT.setString("name", name);
 		
-		displayNBT.setString("Name", name);
+		displayNBT.setString("Name", nameDisplay);
 		
 		finalCompound.setTag("BlockEntityTag", blockEntityNBT);
 		finalCompound.setTag("display", displayNBT);
@@ -63,6 +65,17 @@ public class CommandSetElementa extends CommandBase{
 		NBTTagCompound nbt = item.getNBTShareTag(player.getHeldItemMainhand());
 		if(nbt == null) return null;
 		return nbt.toString();
+	}
+	
+	private String arrayToSingleString(String[] stringIn) {
+		String stringOut = "";
+		
+		for(int i = 0; i < stringIn.length; i++) {
+			stringOut += stringIn[i] + " ";
+		}
+		stringOut.trim();
+		
+		return stringOut;
 	}
 	
 	@Override
