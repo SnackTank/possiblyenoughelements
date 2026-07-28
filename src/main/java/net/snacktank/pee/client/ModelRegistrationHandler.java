@@ -16,10 +16,7 @@ public class ModelRegistrationHandler {
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
 		registerModel(ModItems.FIRST_ITEM, 0);
-		registerModel(ModItems.NATRIUM, 0);
 		registerModel(Item.getItemFromBlock(ModBlocks.FIRST_BLOCK), 0);
-		registerModel(Item.getItemFromBlock(ModBlocks.CUBUS_NATRII), 0);
-		registerModel(Item.getItemFromBlock(ModBlocks.CUBUS_HYDROGENII), 0);
 		registerModel(Item.getItemFromBlock(ModBlocks.CUBUS_GASI), 0);
 		registerModel(Item.getItemFromBlock(ModBlocks.CUBUS_ELEMENTORUM), 0);
 	}

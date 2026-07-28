@@ -8,8 +8,8 @@
 <h2>Features</h2>
 <p>
   I) Hydrogen <br>
-  II) Helium  <br>
-  III) Sodium <br><br>
+  II) Oxygen  <br>
+  III) Electrolysis <br><br>
 
   Planed to add every element into Minecraft.
 </p>

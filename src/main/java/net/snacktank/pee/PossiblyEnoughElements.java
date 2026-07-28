@@ -20,7 +20,7 @@ public class PossiblyEnoughElements {
 
 	public static final String MODID = "possiblyenoughelements";
 	public static final String NAME = "Possibly Enough Elements";
-	public static final String VERSION = "0.4.0-beta.1";
+	public static final String VERSION = "0.4.0-beta.2";
 	public static final String MC_VERSION = "[1.12.2]";
 	
 	public static final Logger LOGGER = LogManager.getLogger(PossiblyEnoughElements.MODID);

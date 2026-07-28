@@ -5,7 +5,9 @@ import net.snacktank.pee.machine.*;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.World;
 
 public class CommandMachine extends CommandBase{
 
@@ -13,8 +15,9 @@ public class CommandMachine extends CommandBase{
 	
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] params) throws CommandException {
-		//Now the question is... does the command or the machine itself have the logic? I'm thinking the machine.
-		MachineElectrolysis machine = new MachineElectrolysis(server, sender);
+		World world = server.getEntityWorld();
+		EntityPlayer player = world.getPlayerEntityByUUID(sender.getCommandSenderEntity().getUniqueID());
+		MachineElectrolysis machine = new MachineElectrolysis(world, player);
 		TickHandler.machines.add(machine);
 	}
 

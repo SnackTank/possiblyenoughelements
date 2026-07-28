@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
@@ -19,36 +18,43 @@ public class MachineElectrolysis {
 
 	private ICommandSender sender;
 	private EntityPlayer player;
-	private World world;
-	private BlockPos pos;
-	private Chunk chunk;
+	public World world;
+	public BlockPos pos;
+	public Chunk chunk;
 	
 	private LinkedList<BlockPos> machineBlockPos;
 	private LinkedList<BlockPos> blackListBlockPos;
-	private LinkedList<BlockPos[]> validMachine;
+	public LinkedList<BlockPos[]> validMachine;
 	private LinkedList<BlockPos[]> electrodes;
 	
-	public MachineElectrolysis(MinecraftServer server, ICommandSender sender) {
-		this.sender = sender;
+	public MachineElectrolysis(World world, EntityPlayer player) {
+		this.world = world;
+		this.player = player;
+		sender = player.getCommandSenderEntity();
 		
-		world = server.getEntityWorld();		
-		player = world.getPlayerEntityByUUID(sender.getCommandSenderEntity().getUniqueID());
 		pos = player.getPosition();
 		
 		chunk = world.getChunkFromBlockCoords(pos);
-		
-		update();
+	}
+	
+	public void machineGet() {
+		getMachine();
+		if (validMachine.size() <= 0) {
+			sendMessage("No valid machines found!");
+			return;
+		}
 		
 		sendMessage("Valid machines: " + validMachine.size());
 		for(int i = 0; i < validMachine.size(); i++) {
 			BlockPos[] pos = validMachine.get(i);
-			sendMessage(i + ": " + pos[0] + " " + pos[1] + " " + pos[2]);
+			sendMessage(i + ": G; X:" + pos[0].getX() + ", Y:" + pos[0].getY() + ", Z" + pos[0].getZ());
+			sendMessage(i + ": W; X:" + pos[1].getX() + ", Y:" + pos[1].getY() + ", Z" + pos[1].getZ());
+			sendMessage(i + ": G; X:" + pos[2].getX() + ", Y:" + pos[2].getY() + ", Z" + pos[2].getZ());
+			sendMessage("-----------------------------");
 		}
-		
 	}
 	
 	public void update() {
-		getMachine();
 		getElectrode();
 		for(int i = 0; i < electrodes.size(); i++) {
 			if(electrodes.get(i)[0] == null) continue;
@@ -68,8 +74,8 @@ public class MachineElectrolysis {
 			world.setBlockState(newCathodePos, cathodeState);
 			
 			//Change the NBT data to change the output gas.
-			TileEntity ote = sender.getEntityWorld().getTileEntity(newAnodePos);
-			TileEntity hte = sender.getEntityWorld().getTileEntity(newCathodePos);
+			TileEntity ote = world.getTileEntity(newAnodePos);
+			TileEntity hte = world.getTileEntity(newCathodePos);
 			((TileEntityGasum) ote).name = "oxygenium";
 			((TileEntityGasum) ote).canFloat = true;
 			((TileEntityGasum) ote).canExplode = false;
@@ -225,12 +231,9 @@ public class MachineElectrolysis {
 				
 			}
 		}
-		
-
 	}
-
+	
 	private void sendMessage(String message) {
 		sender.sendMessage(new TextComponentString(message));
 	}
-	
 }
