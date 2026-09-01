@@ -37,6 +37,15 @@ public class MachineElectrolysis {
 		chunk = world.getChunkFromBlockCoords(pos);
 	}
 	
+	private void updateMachine() {
+		if(validMachine.size() <= 0) {
+			getMachine();
+			return;
+		}
+		
+		
+	}
+	
 	public void machineGet() {
 		getMachine();
 		if (validMachine.size() <= 0) {
