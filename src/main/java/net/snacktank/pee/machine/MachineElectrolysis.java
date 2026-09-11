@@ -15,9 +15,10 @@ import net.snacktank.pee.PossiblyEnoughElements;
 import net.snacktank.pee.tileentity.TileEntityGasum;
 
 public class MachineElectrolysis {
+	
+	//TODO fix this mess
 
 	private ICommandSender sender;
-	private EntityPlayer player;
 	public World world;
 	public BlockPos pos;
 	public Chunk chunk;
@@ -29,21 +30,11 @@ public class MachineElectrolysis {
 	
 	public MachineElectrolysis(World world, EntityPlayer player) {
 		this.world = world;
-		this.player = player;
 		sender = player.getCommandSenderEntity();
 		
 		pos = player.getPosition();
 		
 		chunk = world.getChunkFromBlockCoords(pos);
-	}
-	
-	private void updateMachine() {
-		if(validMachine.size() <= 0) {
-			getMachine();
-			return;
-		}
-		
-		
 	}
 	
 	public void machineGet() {
@@ -64,6 +55,7 @@ public class MachineElectrolysis {
 	}
 	
 	public void update() {
+		checkMachine();
 		getElectrode();
 		for(int i = 0; i < electrodes.size(); i++) {
 			if(electrodes.get(i)[0] == null) continue;
@@ -132,6 +124,24 @@ public class MachineElectrolysis {
 			electrodeBlocks[0] = null;
 			electrodeBlocks[1] = null;
 			electrodes.add(electrodeBlocks);
+		}
+	}
+	
+	private void checkMachine() {
+		boolean reDoLast = false;
+		for(int i = 0; i < validMachine.size(); i++) {
+			if(reDoLast) { i--; reDoLast = false; }
+			if(chunk.getBlockState(validMachine.get(i)[0]).equals(Block.getStateById(Block.getIdFromBlock(Block.getBlockFromName("minecraft:gold_block")))) &&
+			   chunk.getBlockState(validMachine.get(i)[1]).equals(Block.getStateById(Block.getIdFromBlock(Block.getBlockFromName("minecraft:water")))) &&
+			   chunk.getBlockState(validMachine.get(i)[2]).equals(Block.getStateById(Block.getIdFromBlock(Block.getBlockFromName("minecraft:gold_block"))))) {
+				//Machine is still valid
+				continue;
+			} else {
+				//Machine is no longer valid
+				validMachine.remove(i);
+				sendMessage("Removed Machine!");
+				reDoLast = true;
+			}
 		}
 	}
 	

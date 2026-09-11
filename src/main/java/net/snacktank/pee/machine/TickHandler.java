@@ -62,7 +62,6 @@ public class TickHandler {
 				MachineElectrolysis me = machines.get(p);
 				updateQueue.add(me);
 				k = 0;
-				System.out.println("Test A");
 				brokeOut = true;
 				break;
 			}
@@ -74,7 +73,6 @@ public class TickHandler {
 			machines.add(ec);
 			updateQueue.add(ec);
 			k = 0;
-			System.out.println("Test B");
 		}
 	}
 }
